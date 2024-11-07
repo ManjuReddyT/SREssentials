@@ -47,3 +47,53 @@ pip install pandas xlsxwriter
     - Log File Path: Provide the full path to your MongoDB log file.
     - Output File Path: Specify the path where you want the output Excel file saved.
 
+# MySQL Log Parser
+
+This script is designed to parse MySQL log files and extract detailed performance metrics, providing both individual query metrics and aggregated analysis. The output is saved as an Excel file with two sheets: "Detailed Metrics" and "Aggregate Results."
+
+## Features
+
+- **Extracts Key Metrics**: Captures execution time, lock time, rows sent, rows examined, and user/host information.
+- **Query Normalization**: Replaces specific literals and numbers with placeholders to group similar queries, allowing for aggregated analysis.
+- **Aggregate Analysis**: Summarizes executions of each normalized query, including min, max, and average execution times.
+
+## Requirements
+
+- Python 3.7+
+- `pandas` library for data manipulation
+- `openpyxl` library for Excel file writing
+
+You can install the dependencies via pip:
+
+```bash
+pip install pandas openpyxl
+```
+
+## Usage
+Clone the Repository:
+
+```bash
+git clone <repository-url>
+cd mysql-log-parser
+```
+
+Prepare Your MySQL Log File:
+Ensure your MySQL log file is available and in the correct format, with each query entry starting with a # Time marker.
+
+## Run the Script:
+
+``` bash
+python mysql_log_parser.py
+```
+Provide Input and Output Paths:
+
+Enter the path to your MySQL log file when prompted.
+Enter the desired output path for the Excel file.
+
+View Output:
+Open the generated Excel file, which includes two sheets:
+
+Detailed Metrics: Raw log metrics, including Time, User@Host, Query_time, Lock_time, Rows_sent, Rows_examined, Query, and Normalized_Query.
+Aggregate Results: Summary metrics grouped by Normalized_Query, showing:
+Execution count
+Minimum, maximum, and average query times
